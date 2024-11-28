@@ -106,7 +106,7 @@ _[Video source](https://www.youtube.com/watch?v=0yK7LXwYeD0&list=PL3MmuxUbc_hJed
 
 In the previous lesson we saw the definition of [data pipeline](1_intro.md#data-pipelines) and we created a [pipeline script](../1_intro/ingest_data.py) that downloaded a CSV and processed it so that we could ingest it to Postgres.
 
-The script we created is an example of how **NOT** to create a pipeline, because it contains 2 steps which could otherwise be separated (downloading and processing). The reason is that if our internet connection is slow or if we're simply testing the script, it will have to download the CSV file every single time that we run the script, which is less than ideal.
+The script we created is an example of how **NOT** to create a pipeline (we should not write a pipeline like we did in lec01), because it contains 2 steps which could otherwise be separated (downloading and processing). The reason is that if our internet connection is slow or if we're simply testing the script, it will have to download the CSV file every single time (the 2 tasks in 1 python files -> always execute both of them) that we run the script, which is less than ideal. (rather, we want to check for the csv file, if it is ready run the ingress, if it is not ready wait until it is ready, (add while un_success to each task))
 
 Ideally, each of these steps would be contained as separate entities, like for example 2 separate scripts. For our pipeline, that would look like this:
 
